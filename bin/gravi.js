@@ -5,14 +5,18 @@
  * 2021/03/10
  */
 
-var program = require('commander'); // 命令行工具
-var chalk = require('chalk'); // 命令行输出美化
-var didYouMean = require('didyoumean'); // 简易的智能匹配引擎
-var semver = require('semver'); // npm的语义版本包
-var enhanceErrorMessages = require('../lib/util/enhanceErrorMessages.js');
-var requiredNodeVersion = require('../package.json').engines.node;
+const program = require('commander'); // 命令行工具
+const chalk = require('chalk'); // 命令行输出美化
+const didYouMean = require('didyoumean'); // 简易的智能匹配引擎
+const semver = require('semver'); // npm的语义版本包
+const enhanceErrorMessages = require('../lib/util/enhanceErrorMessages.js');
+const requiredNodeVersion = require('../package.json').engines.node;
+const validateArgsLenEnum = require('../lib/constant/validateArgsLenEnum');
+const processCodeEnum = require('../lib/constant/processCodeEnum');
+const dymConfig = require('../lib/constant/dymConfig');
 
-didYouMean.threshold = 0.6;
+//  设置匹配阈值
+didYouMean.threshold = dymConfig.THRESHOLD;
 
 main();
 
@@ -38,7 +42,7 @@ function checkNodeVersion(expect, cliName) {
       )
     );
     // 退出进程
-    process.exit(1);
+    process.exit(processCodeEnum.UncaughtException);
   }
 }
 
@@ -49,11 +53,11 @@ function checkNodeVersion(expect, cliName) {
  * 2021/03/10
  */
 function suggestCommands(cmd) {
-  var avaliableCommands = program.commands.map(function(cmd) {
+  const avaliableCommands = program.commands.map(function(cmd) {
     return cmd._name;
   });
   // 简易智能匹配用户命令
-  var suggestion = didYouMean(cmd, avaliableCommands);
+  const suggestion = didYouMean(cmd, avaliableCommands);
   if (suggestion) {
     console.log(
       '  ' + chalk.red('Did you mean ' + chalk.yellow(suggestion) + '?')
@@ -103,7 +107,7 @@ function main() {
     .description('init a new project from a template')
     .action(function(templateName, projectName, cmd) {
       // 输入参数校验
-      validateArgsLen(process.argv.length, 5);
+      validateArgsLen(process.argv.length, validateArgsLenEnum.Init);
       require('../lib/commands/cmd-init')(lowercase(templateName), projectName);
     });
 
@@ -112,28 +116,31 @@ function main() {
     .command('add <template-name> <git-repo-address>')
     .description('add a project template')
     .action(function(templateName, gitRepoAddress, cmd) {
-      validateArgsLen(process.argv.length, 5);
+      validateArgsLen(process.argv.length, validateArgsLenEnum.Add);
       require('../lib/commands/cmd-add')(
         lowercase(templateName),
         gitRepoAddress
       );
     });
+
   // 5. ls 列出支持的项目模板
   program
     .command('ls')
     .description('list all available project template')
     .action(function(cmd) {
-      validateArgsLen(process.argv.length, 3);
+      validateArgsLen(process.argv.length, validateArgsLenEnum.List);
       require('../lib/commands/cmd-list')();
     });
+
   // 6. rm 删除一个项目模板
   program
     .command('rm <template-name>')
     .description('remove a project template')
     .action(function(templateName, cmd) {
-      validateArgsLen(process.argv.length, 4);
+      validateArgsLen(process.argv.length, validateArgsLenEnum.Remove);
       require('../lib/cmd-remove')(templateName);
     });
+
   // 7. 处理非法命令
   program.arguments('<command>').action(function(cmd) {
     // 不退出输出帮助信息
@@ -143,12 +150,16 @@ function main() {
     program.outputHelp();
     suggestCommands(cmd);
   });
+
   // 8. 重写commander某些事件
   enhanceErrorMessages('missingArgument', function(argsName) {
     return 'Missing required argument ' + chalk.yellow('<' + argsName + '>');
   });
-  program.parse(process.argv); // 把命令行参数传给commander解析
-  // 9. 输入gravi显示帮助信息
+
+  // 9. 把命令行参数传给commander解析
+  program.parse(process.argv);
+
+  // 10. 输入gravi显示帮助信息
   if (!process.argv.slice(2).length) {
     program.outputHelp();
   }

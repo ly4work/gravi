@@ -34,7 +34,7 @@ Mac 下安装
 
 ```
 $ sudo npm i gravi-cli -g
-或 sudo yarn  global add gravi-cli
+或 sudo yarn global add gravi-cli
 ```
 
 ### 查看帮助信息
