@@ -11,11 +11,11 @@
 
 # gravi-cli
 
-一个快速上手的前端脚手架, 轻松创建项目模板, 快速开发基于React/Vue的PC端或移动端应用。
+一个快速上手的前端脚手架, 轻松创建项目模板, 快速开发基于 React/Vue 的 PC 端或移动端应用。
 
 ## Features
 
-- 支持多类型项目模板, 模板都会集成代码扫描, 工作流等, 具体查看模板github地址。
+- 支持多类型项目模板, 模板都会集成代码扫描, 工作流等, 具体查看模板 github 地址。
 - 支持添加项目模板, 删除项目模板(folk 作为自己的工具推荐使用)
 - 支持自动检测脚手架更新
 
@@ -23,16 +23,18 @@
 
 ### 安装
 
-Windows系统安装
+Windows 系统安装
+
 ```
 $ npm i gravi-cli -g
-或 yarn add global gravi-cli
+或 yarn  global add gravi-cli
 ```
 
-Mac下安装
+Mac 下安装
+
 ```
 $ sudo npm i gravi-cli -g
-或 sudo yarn add global gravi-cli
+或 sudo yarn  global add gravi-cli
 ```
 
 ### 查看帮助信息
@@ -40,7 +42,6 @@ $ sudo npm i gravi-cli -g
 ```
 $ gravi
 ```
-
 
 ### 创建项目
 
@@ -70,13 +71,13 @@ $ gravi add 模板名<template-name> 模板github仓库地址,支持ssh/https格
 $ gravi rm 模板名<template-name>
 ```
 
-### 发布到npm
+### 发布到 npm
 
-执行pkg下的脚本, 自动发版并且生成changelog, travis就会执行检测后续自动发到npm.
+执行 pkg 下的脚本, 自动发版并且生成 changelog, travis 就会执行检测后续自动发到 npm.
+
 ```
 npm run release
 ```
-
 
 ## Changelog
 
