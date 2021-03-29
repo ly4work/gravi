@@ -13,13 +13,13 @@
 
 一个快速上手的前端脚手架, 轻松创建项目模板, 快速开发基于 React/Vue 的 PC 端或移动端应用。
 
-## Features
+## ✨ Features
 
 - 支持多类型项目模板, 模板都会集成代码扫描, 工作流等, 具体查看模板 github 地址。
 - 支持添加项目模板, 删除项目模板(folk 作为自己的工具推荐使用)
 - 支持自动检测脚手架更新
 
-## Installation & Quick start
+## ☘️ Installation & Quick start
 
 ### 安装
 
@@ -79,11 +79,11 @@ $ gravi rm 模板名<template-name>
 npm run release
 ```
 
-## Changelog
+## 🔥Changelog
 
 [Changelog](https://github.com/ly4work/gravi/blob/master/CHANGELOG.md)
 
-## TODOLIST
+## 🧭TODOLIST
 
 - [ ] pc-admin-template
 - [ ] h5-react-template
