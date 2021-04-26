@@ -1,4 +1,12 @@
 {
+  "pc-admin": {
+    "github": "https://github.com/ly4work/gravi-pc-admin-template.git",
+    "download": "github:ly4work/gravi-pc-admin-template.git"
+  },
+  "h5-react": {
+    "github": "https://github.com/ly4work/gravi-h5-react-template.git",
+    "download": "github:ly4work/gravi-h5-react-template.git"
+  },
   "h5-vue": {
     "github": "https://github.com/ly4work/gravi-h5-vue-template.git",
     "download": "github:ly4work/gravi-h5-vue-template.git"
