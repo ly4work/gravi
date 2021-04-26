@@ -27,7 +27,6 @@ Windows 系统安装
 
 ```
 $ npm i gravi-cli -g
-或 yarn  global add gravi-cli
 ```
 
 Mac 下安装
