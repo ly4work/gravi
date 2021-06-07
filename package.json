@@ -1,6 +1,6 @@
 {
   "name": "gravi-cli",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "前端工程模板工具Gravi，源自物理学名词，引力Gravitation",
   "main": "index.js",
   "scripts": {
